@@ -35,9 +35,16 @@
     // Disable React display-name rule
     "react/display-name": "off",
     // Warn for unnecessary curly braces in JSX
-    "react/jsx-curly-brace-presence": ["warn"],
+    "react/jsx-curly-brace-presence": [
+      "warn",
+      {
+        "props": "never",
+        "children": "never"
+      }
+    ],
     // Warn for unused imports
     "unused-imports/no-unused-imports": "warn",
+    "react/no-unescaped-entities": "warn",
     // Warn for unused variables, ignore variables and arguments starting with '_'
     "unused-imports/no-unused-vars": [
       "warn",
