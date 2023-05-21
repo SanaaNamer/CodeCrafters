@@ -1,3 +1,96 @@
 {
-  "extends": "next/core-web-vitals"
+  // Enable browser, ES2021, Node, and Jest environments [git-scm.com](https://git-scm.com/docs/git-commit)
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  // Include simple-import-sort and unused-imports plugins
+  "plugins": ["simple-import-sort", "unused-imports"],
+  // Extend Next.js, Core Web Vitals, ESLint recommended, and Storybook recommended configurations
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:storybook/recommended"
+  ],
+  // Define React and JSX as global variables
+  "globals": {
+    "React": true,
+    "JSX": true
+  },
+  // Define rules for ESLint
+  "rules": {
+    // Warn for unused variables, ignore arguments starting with '_'
+    "no-unused-vars": [
+      1,
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    // Warn for console usage
+    "no-console": "warn",
+    // Disable React display-name rule
+    "react/display-name": "off",
+    // Warn for unnecessary curly braces in JSX
+    "react/jsx-curly-brace-presence": [
+      "warn",
+      {
+        "props": "never",
+        "children": "never"
+      }
+    ],
+    // Warn for unused imports
+    "unused-imports/no-unused-imports": "warn",
+    "react/no-unescaped-entities": "warn",
+    // Warn for unused variables, ignore variables and arguments starting with '_'
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    // Warn for unsorted exports
+    "simple-import-sort/exports": "warn",
+    // Warn for unsorted imports and define custom import groups
+    "simple-import-sort/imports": [
+      "warn",
+      {
+        "groups": [
+          // External library and side effect imports
+          ["^@?\\w", "^\\u0000"],
+          // SCSS and CSS files
+          ["^.+\\.s?css$"],
+          // Library and hooks
+          ["^@/lib", "^@/hooks"],
+          // Static data
+          ["^@/data"],
+          // Components and containers
+          ["^@/components", "^@/container"],
+          // Zustand store
+          ["^@/store"],
+          // Other imports
+          ["^@/"],
+          // Relative paths up to 3 levels
+          [
+            "^\\./?$",
+            "^\\.(?!/?$)",
+            "^\\.\\./?$",
+            "^\\.\\.(?!/?$)",
+            "^\\.\\./\\.\\./?$",
+            "^\\.\\./\\.\\.(?!/?$)",
+            "^\\.\\./\\.\\./\\.\\./?$",
+            "^\\.\\./\\.\\./\\.\\.(?!/?$)"
+          ],
+          // Other imports that didn't fit in
+          ["^"]
+        ]
+      }
+    ]
+  }
 }
